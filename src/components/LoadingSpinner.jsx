@@ -1,7 +1,3 @@
-/**
- * LoadingSpinner — Shown while photos are being fetched.
- * Uses a CSS-animated SVG ring so no extra library is needed.
- */
 const LoadingSpinner = () => (
   <div className="flex flex-col items-center justify-center py-32 gap-6">
     <div className="relative w-16 h-16">

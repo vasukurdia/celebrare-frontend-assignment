@@ -1,16 +1,9 @@
 import { useFavourites } from '../context/FavouritesContext'
 
-/**
- * PhotoCard — Renders a single photo with author name and heart button.
- *
- * Props:
- *  - photo: { id, author, width, height, download_url }
- */
 const PhotoCard = ({ photo }) => {
   const { favourites, toggleFavourite } = useFavourites()
   const isFav = favourites.has(String(photo.id))
 
-  // Build a 300×200 image URL from Picsum using the photo id
   const imgSrc = `https://picsum.photos/id/${photo.id}/400/300`
 
   return (

@@ -1,11 +1,3 @@
-/**
- * SearchBar — Controlled input for filtering photos by author name.
- *
- * Props:
- *  - value: string — current search value (controlled)
- *  - onChange: function — called with the new string on every keystroke
- *  - resultCount: number — how many photos match the current query
- */
 const SearchBar = ({ value, onChange, resultCount }) => (
   <div className="w-full max-w-xl mx-auto">
     <div className="relative">

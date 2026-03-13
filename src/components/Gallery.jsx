@@ -6,41 +6,17 @@ import SearchBar from './SearchBar'
 import LoadingSpinner from './LoadingSpinner'
 import ErrorMessage from './ErrorMessage'
 
-/**
- * Gallery — The main content component.
- *
- * Responsibilities:
- *  1. Use useFetchPhotos hook to get data (never fetches directly)
- *  2. Manage the search query string via useState
- *  3. Filter photos with useMemo so the computation only re-runs when
- *     photos or query actually change (not on every render)
- *  4. Wrap the search handler in useCallback so the SearchBar never
- *     gets a new function reference unnecessarily, preventing re-renders
- */
 const Gallery = () => {
   const { photos, loading, error } = useFetchPhotos()
   const { favourites } = useFavourites()
 
   const [query, setQuery] = useState('')
-  const [activeTab, setActiveTab] = useState('all') // 'all' | 'favourites'
+  const [activeTab, setActiveTab] = useState('all')
 
-  // ------------------------------------------------------------------
-  // useCallback: memoises the handler so the same function reference
-  // is passed to SearchBar on every render.
-  // Without this, SearchBar would receive a brand-new function on every
-  // Gallery re-render, causing unnecessary child re-renders.
-  // ------------------------------------------------------------------
   const handleSearchChange = useCallback((value) => {
     setQuery(value)
-  }, []) // no dependencies — the function never needs to change
+  }, [])
 
-  // ------------------------------------------------------------------
-  // useMemo: the filtered list is derived (expensive) from two inputs.
-  // Without useMemo, filtering would re-run on EVERY render — even
-  // renders triggered by toggling a favourite — which is wasteful.
-  // With useMemo, the computation only re-runs when `photos` or `query`
-  // actually changes.
-  // ------------------------------------------------------------------
   const filteredPhotos = useMemo(() => {
     const base = activeTab === 'favourites'
       ? photos.filter((p) => favourites.has(String(p.id)))

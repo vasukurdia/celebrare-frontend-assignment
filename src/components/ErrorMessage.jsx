@@ -1,8 +1,3 @@
-/**
- * ErrorMessage — Shown when the API fetch fails.
- * Props:
- *  - message: string — the error detail to display
- */
 const ErrorMessage = ({ message }) => (
   <div className="flex flex-col items-center justify-center py-32 gap-4 text-center px-4">
     <div className="w-16 h-16 rounded-full bg-rose/10 flex items-center justify-center">

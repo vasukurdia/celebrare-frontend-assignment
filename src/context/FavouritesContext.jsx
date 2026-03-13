@@ -22,13 +22,12 @@ const favouritesReducer = (state, action) => {
 const FavouritesContext = createContext(null)
 const STORAGE_KEY = 'photo-gallery-favourites'
 
-// ✅ FIX: initial state seedha localStorage se lo — useEffect ki zaroorat nahi
 const getInitialFavourites = () => {
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
     if (stored) return new Set(JSON.parse(stored))
   } catch {
-    // ignore
+    
   }
   return new Set()
 }
@@ -36,12 +35,11 @@ const getInitialFavourites = () => {
 export const FavouritesProvider = ({ children }) => {
   const [favourites, dispatch] = useReducer(favouritesReducer, null, getInitialFavourites)
 
-  // Sirf save karo — load wala useEffect hatao
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify([...favourites]))
     } catch {
-      // ignore
+
     }
   }, [favourites])
 

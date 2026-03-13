@@ -1,11 +1,6 @@
 import { FavouritesProvider } from './context/FavouritesContext'
 import Gallery from './components/Gallery'
 
-/**
- * App — Root component.
- * Wraps everything in FavouritesProvider so any descendant can access
- * the favourites state and dispatcher via useFavourites().
- */
 const App = () => {
   return (
     <FavouritesProvider>
